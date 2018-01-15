@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_init_ap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 15:04:39 by apoque            #+#    #+#             */
-/*   Updated: 2018/01/15 16:01:19 by apoque           ###   ########.fr       */
+/*   Created: 2018/01/15 15:24:04 by apoque            #+#    #+#             */
+/*   Updated: 2018/01/15 16:01:08 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+void	ft_init_ap(va_list *ap)
+{
+	int		d;
+	char	c;
+	char	*s;
 
-int		ft_printf(const char *, ...);
-void	ft_init_ap(va_list *ap);
-
-#endif
+	d = va_arg(*ap, int);
+	c = (char)va_arg(*ap, int);
+	s = va_arg(*ap, char*);
+	va_end(*ap);
+}
