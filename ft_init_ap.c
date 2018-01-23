@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 15:24:04 by apoque            #+#    #+#             */
-/*   Updated: 2018/01/15 16:01:08 by apoque           ###   ########.fr       */
+/*   Updated: 2018/01/23 20:41:06 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,4 @@ void	ft_init_ap(va_list *ap)
 	d = va_arg(*ap, int);
 	c = (char)va_arg(*ap, int);
 	s = va_arg(*ap, char*);
-	va_end(*ap);
 }
