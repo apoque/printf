@@ -17,15 +17,8 @@ int		main(void)
 {
 	int	i;
 
-	i = 9;
-	//printf("printf = \n|");
-	printf("\nnb = %d\n\n", printf("%d", i));
-	//printf("\n\nft_printf = \n|");
-	printf("\nnb = %d\n", ft_printf("%d", i));
-	//printf("|\n");
-	//
-	//printf("Salut\n\n");
-	//ft_printf("Salut\n");
-
-	return (1);
+	i = 69;
+	printf("Yo_%i_Yi%i\n", i, i);
+	ft_printf("Yo_%i_Yi%i\n", i, i);
+	return (i);
 }

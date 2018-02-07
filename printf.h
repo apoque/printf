@@ -15,20 +15,22 @@
 
 # include <stdarg.h>
 # include <unistd.h>
+# include <stdlib.h>
 #include "libft/libft.h"
 
-typedef struct		s_printf
+typedef struct				s_printf
 {
-	const char		*format;
-	va_list			ap;
+	const char			*format;
+	va_list				ap;
 	int				conv;
-	int				size;
-	int				idx;
+	int				idx1;
+	int				idx2;
+	char				*buf;
+	char				*add;
 }					t_printf;
 
 int					ft_printf(const char *, ...);
-void				ft_init_ap(va_list *ap);
-t_printf			ft_nb(t_printf p);
-void				ft_init_p(t_printf *p, const char *format);
+void					ft_nb(t_printf *p);
+void					ft_init_p(t_printf *p, const char *format);
 
 #endif

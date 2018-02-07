@@ -12,7 +12,7 @@
 
 CC = gcc
 
-CFLAGS = -Werror -Wextra -Wall
+//CFLAGS = -Werror -Wextra -Wall
 
 NAME = printf
 
@@ -20,7 +20,6 @@ INC = printf.h
 
 SRC =main.c \
 	 ft_printf.c\
-	 ft_init_ap.c\
 	 ft_nb.c\
 
 OBJ = $(SRC:.c=.o)
@@ -28,7 +27,7 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I libft/include -L libft/ -lft
+	$(CC) $(FLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
 
 clean : 
 	rm -rf $(OBJ)
