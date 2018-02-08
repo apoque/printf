@@ -18,6 +18,8 @@
 # include <stdlib.h>
 #include "libft/libft.h"
 
+# include <stdio.h>
+
 typedef struct				s_printf
 {
 	const char			*format;
@@ -31,6 +33,8 @@ typedef struct				s_printf
 
 int						ft_printf(const char *, ...);
 void					ft_nb(t_printf *p);
+void					ft_str(t_printf *p);
+void					ft_char(t_printf *p);
 void					ft_init_p(t_printf *p, const char *format);
 void					ft_buf(t_printf *p);
 

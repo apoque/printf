@@ -17,6 +17,10 @@ void		ft_treatment(t_printf *p)
 {
 	if (p->format[p->idx2] == 'i' || p->format[p->idx2] == 'd')
 		ft_nb(p);
+	else if (p->format[p->idx2] == 's')
+			ft_str(p);
+	else if (p->format[p->idx2] == 'c')
+			ft_char(p);
 	p->idx2++;
 }
 
@@ -46,6 +50,7 @@ void		ft_buf(t_printf *p)
 	free(p->buf);
 	p->buf = ft_strjoin(tmp, p->add);
 	free(tmp);
+	//ft_memset((void *)p->add, 0, ft_strlen(p->add));
 	free(p->add);
 }
 

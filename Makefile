@@ -21,6 +21,8 @@ INC = printf.h
 SRC =main.c \
 	 ft_printf.c\
 	 ft_nb.c\
+	 ft_str.c\
+	 ft_char.c\
 
 OBJ = $(SRC:.c=.o)
 

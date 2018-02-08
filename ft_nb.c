@@ -15,6 +15,6 @@
 
 void	ft_nb(t_printf *p)
 {
-	p->add = ft_strdup(ft_itoa(va_arg(p->ap, int)));
+	p->add = ft_itoa(va_arg(p->ap, int));
 	ft_buf(p);
 }

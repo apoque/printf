@@ -15,10 +15,15 @@
 
 int		main(void)
 {
-	int	i;
+	int		i;
+	char	*str;
+	char	c;
 
 	i = 69;
-	printf("Yo_%i_Yi%i\n", i, i);
-	ft_printf("Yo_%i_Yi%i\n", i, i);
+	str = "suce ma\n";
+	c = 'P';
+
+	printf("Yo_%i_Yi%i\n%s%c\n", i, i, str, c);
+	ft_printf("Yo_%i_Yi%i\n%s%c\n", i, i, str, c);
 	return (i);
 }
