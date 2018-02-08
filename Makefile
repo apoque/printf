@@ -27,9 +27,11 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
+	cd libft ; make ; cd ..
 	$(CC) $(FLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
 
-clean : 
+clean :
+	cd libft ; make fclean ; cd ..
 	rm -rf $(OBJ)
 
 fclean : clean
