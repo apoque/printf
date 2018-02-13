@@ -6,15 +6,76 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:35:31 by apoque            #+#    #+#             */
-/*   Updated: 2018/01/23 20:52:42 by apoque           ###   ########.fr       */
+/*   Updated: 2018/02/13 14:37:12 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include <stdio.h>
 
-void	ft_nb(t_printf *p)
+#define R (result % 10) + 48
+
+static int	ft_string_size(long long n, int signe)
 {
-	p->add = ft_itoa(va_arg(p->ap, int));
+	int	size;
+
+	size = 1 + signe;
+	if (n > 0)
+	{
+		while (n / 10 > 0)
+		{
+			n = n / 10;
+			size++;
+		}
+	}
+	else if (n < 0)
+	{
+		while (n / 10 < 0)
+		{
+			n = n / 10;
+			size++;
+		}
+	}
+	return (size);
+}
+
+char		*ft_ltoa(long n)
+{
+	long long	result;
+	char		*str;
+	int			signe;
+	int			size;
+	int			i;
+
+	signe = 0;
+	i = 0;
+	result = (long long)n;
+	if (result < 0)
+		signe = 1;
+	if (result < 0)
+		result = -result;
+	size = ft_string_size(result, signe);
+	if (!(str = ft_strnew(size)))
+		return (NULL);
+	if (signe == 1)
+		str[0] = '-';
+	while (i < size - signe)
+	{
+		(result > 0) ? str[size - 1 - i] = R : (str[size - 1 - i] = -R);
+		result = result / 10;
+		i++;
+	}
+	return (str);
+}
+
+void	ft_long(t_printf *p)
+{
+	p->add = (wchar_t *)ft_ltoa(va_arg(p->ap, long));
+	ft_buf(p);
+}
+
+void	ft_int(t_printf *p)
+{
+	p->add = (wchar_t *)ft_itoa(va_arg(p->ap, int));
 	ft_buf(p);
 }
