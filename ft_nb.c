@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:35:31 by apoque            #+#    #+#             */
-/*   Updated: 2018/02/13 19:37:13 by apoque           ###   ########.fr       */
+/*   Updated: 2018/02/13 20:49:18 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char		*ft_ltoa(long n)
 
 void	ft_long(t_printf *p)
 {
-	p->buf = ft_ltoa(va_arg(p->ap, long));
+	p->buf = ft_ltoa(va_arg(p->ap, long int));
 	ft_buf(p);
 }
 

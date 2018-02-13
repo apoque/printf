@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 15:06:12 by apoque            #+#    #+#             */
-/*   Updated: 2018/02/13 22:18:29 by apoque           ###   ########.fr       */
+/*   Created: 2018/02/13 21:14:51 by apoque            #+#    #+#             */
+/*   Updated: 2018/02/13 22:32:27 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "printf.h"
-#include <limits.h>
 
-int		main(void)
+void		ft_treatment2(t_printf *p)
 {
-	long int		i;
-	void	*p;
-	wchar_t	*str;
-	wchar_t	c;
+	int	a;
 
-	i = LONG_MAX;
-	p = &i;
-	str = L"Привет";
-	c = 256;
-
-	printf("[%d]\n", printf("%lu\n", i));
-	printf("{%d}\n", ft_printf("%U\n", i));
-	//printf("%ls\n", str);
-	//ft_printf("%S\n", str);
-	return (i);
+	a = 1;
+	if (p->format[p->idx2] == 'S')
+			ft_wstr(p);
+	else if (p->format[p->idx2] == 'c')
+			ft_char(p);
+	else if (p->format[p->idx2] == 'U')
+		ft_umajint(p);
+	else if (p->format[p->idx2] == 'C')
+			ft_wchar(p);
+	else
+		a = 0;
+	if (a == 1)
+		p->idx2++;
 }

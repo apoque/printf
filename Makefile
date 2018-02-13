@@ -6,7 +6,7 @@
 #    By: apoque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 15:03:55 by apoque            #+#    #+#              #
-#    Updated: 2018/02/13 19:38:53 by apoque           ###   ########.fr        #
+#    Updated: 2018/02/13 21:15:00 by apoque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,10 @@ INC = printf.h
 
 SRC =main.c \
 	 ft_printf.c\
+	 ft_printf2.c\
 	 ft_nb.c\
 	 ft_nb2.c\
+	 ft_nb3.c\
 	 ft_str.c\
 	 ft_char.c\
 

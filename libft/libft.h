@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 18:59:53 by apoque            #+#    #+#             */
-/*   Updated: 2018/02/13 19:51:37 by apoque           ###   ########.fr       */
+/*   Updated: 2018/02/13 21:11:10 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ char				*ft_strnstr(const char *s1, const char *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
-char				*ft_itoabase(unsigned int nb, int base);
+char				*ft_uitoabase(unsigned int nb, int base);
+char				*ft_litoabase(unsigned long nb, int base);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

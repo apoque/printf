@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 15:11:11 by apoque            #+#    #+#             */
-/*   Updated: 2018/02/13 20:32:26 by apoque           ###   ########.fr       */
+/*   Updated: 2018/02/13 22:31:52 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void		ft_treatment(t_printf *p)
 {
+	int	a;
+
+	a = 1;
 	if (p->format[p->idx2] == 'i' || p->format[p->idx2] == 'd')
 		ft_int(p);
 	else if (p->format[p->idx2] == 'u')
@@ -24,17 +27,18 @@ void		ft_treatment(t_printf *p)
 		ft_xmajint(p);
 	else if (p->format[p->idx2] == 'o')
 		ft_oint(p);
+	else if (p->format[p->idx2] == 'O')
+		ft_omajint(p);
 	else if (p->format[p->idx2] == 'D')
 		ft_long(p);
 	else if (p->format[p->idx2] == 's')
 			ft_str(p);
-	else if (p->format[p->idx2] == 'S')
-			ft_wstr(p);
-	else if (p->format[p->idx2] == 'c')
-			ft_char(p);
-	else if (p->format[p->idx2] == 'C')
-			ft_wchar(p);
-	p->idx2++;
+		else
+		{
+			a = 0;
+			ft_treatment2(p);
+		}
+	(a == 1) ? p->idx2++ : a--;
 }
 
 void		ft_txt(t_printf *p)

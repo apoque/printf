@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoabase.c                                      :+:      :+:    :+:   */
+/*   ft_litoabase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/13 17:43:30 by apoque            #+#    #+#             */
-/*   Updated: 2018/02/13 20:21:08 by apoque           ###   ########.fr       */
+/*   Created: 2018/02/13 21:09:22 by apoque            #+#    #+#             */
+/*   Updated: 2018/02/13 21:12:12 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static int	ft_count_char_len(unsigned int value, int base)
+static int	ft_count_char_len(unsigned long value, int base)
 {
 	int	len;
 
@@ -28,7 +28,7 @@ static int	ft_count_char_len(unsigned int value, int base)
 	return (len);
 }
 
-char		*ft_itoabase(unsigned int value, int base)
+char		*ft_litoabase(unsigned long value, int base)
 {
 	char	*tab;
 	char	*dest;
