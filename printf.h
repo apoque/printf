@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 15:04:39 by apoque            #+#    #+#             */
-/*   Updated: 2018/01/23 21:10:09 by apoque           ###   ########.fr       */
+/*   Updated: 2018/02/13 20:32:05 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,26 @@ typedef struct				s_printf
 {
 	const char			*format;
 	va_list				ap;
-	int					conv;
+	int					len;
 	int					idx1;
 	int					idx2;
 	char				*buf;
-	char				*add;
 }							t_printf;
 
 int						ft_printf(const char *, ...);
-void					ft_nb(t_printf *p);
+char					*ft_uitoa(unsigned int n);
+void					ft_putwchar(wchar_t chr);
+void					ft_int(t_printf *p);
+void					ft_uint(t_printf *p);
+void					ft_xint(t_printf *p);
+void					ft_xmajint(t_printf *p);
+void					ft_oint(t_printf *p);
+void					ft_long(t_printf *p);
+void					ft_pointer(t_printf *p);
 void					ft_str(t_printf *p);
+void					ft_wstr(t_printf *p);
 void					ft_char(t_printf *p);
+void					ft_wchar(t_printf *p);
 void					ft_init_p(t_printf *p, const char *format);
 void					ft_buf(t_printf *p);
 

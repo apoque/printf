@@ -6,7 +6,7 @@
 #    By: apoque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 18:56:29 by apoque            #+#    #+#              #
-#    Updated: 2017/11/18 12:30:52 by apoque           ###   ########.fr        #
+#    Updated: 2018/02/13 17:48:02 by apoque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC =	ft_memset.c \
 		ft_strcmp.c\
 		ft_strncmp.c\
 		ft_atoi.c\
+		ft_itoabase.c\
 		ft_isalpha.c\
 		ft_isdigit.c\
 		ft_isalnum.c\

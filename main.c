@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 15:06:12 by apoque            #+#    #+#             */
-/*   Updated: 2018/01/23 21:10:05 by apoque           ###   ########.fr       */
+/*   Updated: 2018/02/13 20:33:04 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 
 int		main(void)
 {
-	int		i;
-	char	*str;
-	char	c;
+	unsigned int		i;
+	void	*p;
+	wchar_t	*str;
+	wchar_t	c;
 
-	i = 69;
-	str = "suce ma\n";
-	c = 'P';
+	i = -1;
+	p = &i;
+	str = L"Привет";
+	c = 256;
 
-	printf("Yo_%i_Yi%i\n%s%c\n", i, i, str, c);
-	ft_printf("Yo_%i_Yi%i\n%s%c\n", i, i, str, c);
+	printf("[%d]\n", printf("%X\n", i));
+	printf("{%d}\n", ft_printf("%X\n", i));
+	//printf("%ls\n", str);
+	//ft_printf("%S\n", str);
 	return (i);
 }
