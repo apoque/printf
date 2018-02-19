@@ -16,18 +16,18 @@
 
 int		main(void)
 {
-	long int		i;
+	unsigned int		i;
 	void	*p;
 	wchar_t	*str;
 	wchar_t	c;
 
-	i = LONG_MAX;
+	i = UINT_MAX + 1;
 	p = &i;
 	str = L"Привет";
 	c = 256;
 
-	printf("[%d]\n", printf("%lu\n", i));
-	printf("{%d}\n", ft_printf("%U\n", i));
+	printf("[%d]\n", printf("%O\n", i));
+	printf("{%d}\n", ft_printf("%O\n", i));
 	//printf("%ls\n", str);
 	//ft_printf("%S\n", str);
 	return (i);

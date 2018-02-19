@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-#include "libft/libft.h"
+# include "libft/libft.h"
 
 # include <stdio.h>
 
@@ -49,5 +49,14 @@ void					ft_wchar(t_printf *p);
 void					ft_init_p(t_printf *p, const char *format);
 void					ft_buf(t_printf *p);
 void					ft_treatment2(t_printf *p);
+
+char					*ft_itoa(int n);
+char					*ft_uitoabase(unsigned int nb, int base);
+char					*ft_litoabase(unsigned long nb, int base);
+void					ft_putchar(char c);
+void					ft_putstr(const char *str);
+char					*ft_strdup(const char *s);
+size_t						ft_strlen(const char *str);
+int						ft_toupper(int c);
 
 #endif

@@ -12,7 +12,7 @@
 
 CC = gcc
 
-//CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall
 
 NAME = printf
 
@@ -32,15 +32,22 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	cd libft ; make ; cd ..
-	$(CC) $(FLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
+	make -C libft
+	#cp libft/libft.a ./libftprintf.a
+	#cd libft ; make ; cd ..
+	#$(CC) $(FLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
+	ar -rc temp.a $(OBJ)
+	libtool -static -o libftprintf.a temp.a libft/libft.a
+	ranlib libftprintf.a
+	rm temp.a
 
 clean :
 	cd libft ; make fclean ; cd ..
-	rm -rf $(OBJ)
+	rm $(OBJ)
 
 fclean : clean
-	rm -rf $(NAME)
+	#rm -rf $(NAME) 
+	rm -rf libftprintf.a
 
 re : fclean all
 
