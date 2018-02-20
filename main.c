@@ -21,13 +21,13 @@ int		main(void)
 	wchar_t	*str;
 	wchar_t	c;
 
-	i = UINT_MAX + 1;
+	i = 0;
 	p = &i;
 	str = L"Привет";
 	c = 256;
 
-	printf("[%d]\n", printf("%O\n", i));
-	printf("{%d}\n", ft_printf("%O\n", i));
+	printf("[%d]\n", printf("%20.ld et %.4hhi !", 0x11ffaa147, (signed char)-89));
+	printf("{%d}\n", ft_printf("%20.ld et %.4hhi !", 0x11ffaa147, (signed char)-89));
 	//printf("%ls\n", str);
 	//ft_printf("%S\n", str);
 	return (i);

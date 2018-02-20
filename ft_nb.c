@@ -15,7 +15,7 @@
 
 #define R (result % 10) + 48
 
-static int	ft_string_size(long long n, int signe)
+int	ft_string_size(long long n, int signe)
 {
 	int	size;
 
@@ -97,14 +97,47 @@ char		*ft_ltoa(long n)
 	return (str);
 }
 
-void	ft_long(t_printf *p)
+void	ft_int2(t_printf *p, int i, int zeros)
 {
-	p->buf = ft_ltoa(va_arg(p->ap, long int));
+	if (p->flag[MORE] == 1 && i >= 0)
+	{
+		ft_putchar('+');
+		p->len++;
+	}
+	if (i < 0)
+	{
+		ft_putchar('-');
+		p->len++;
+		i = -i;
+	}
+	if (p->size > 0 && (p->flag[ZERO] == 1 && p->precision == 0))
+		ft_put_space(p, 1);
+	if (zeros > 0)
+		ft_put_precision(p, zeros);
+	p->buf = ft_itoa(i);
 	ft_buf(p);
+	if (p->size > 0 && (p->flag[LESS] == 1))
+		ft_put_space(p, 2);
+	i = 0;
 }
 
 void	ft_int(t_printf *p)
 {
-	p->buf = ft_itoa(va_arg(p->ap, int));
-	ft_buf(p);
-}
+	signed char	i;
+	int	tmp;
+	int	zeros;
+
+	i = va_arg(p->ap, int);
+	zeros = p->precision - ft_strlen(ft_itoa((tmp = (i < 0) ? -i : i )));
+	zeros = (zeros < 0) ? 0 : zeros;
+	p->size = p->size - (zeros + ft_strlen(ft_itoa(i)) + (tmp = (p->flag[MORE] == 1 && i >= 0) ? 1 : 0));
+	if (p->size > 0 && (p->flag[ZERO] != 1 || p->precision > 0) && (p->flag[LESS] != 1))
+		ft_put_space(p, 2);
+	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
+		{
+			ft_putchar(' ');
+			p->len++;
+		}
+		ft_int2(p, i, zeros);
+		i = 0;
+	}

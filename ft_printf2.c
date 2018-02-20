@@ -18,15 +18,94 @@ void		ft_treatment2(t_printf *p)
 
 	a = 1;
 	if (p->format[p->idx2] == 'S')
-			ft_wstr(p);
+		ft_wstr(p);
 	else if (p->format[p->idx2] == 'c')
-			ft_char(p);
+		ft_char(p);
 	else if (p->format[p->idx2] == 'U')
 		ft_umajint(p);
 	else if (p->format[p->idx2] == 'C')
-			ft_wchar(p);
+		ft_wchar(p);
 	else
 		a = 0;
 	if (a == 1)
 		p->idx2++;
+}
+
+void		ft_init_opt(t_printf *p)
+{
+	int	i;
+
+	i = 0;
+	while (p->flag[i] != '\0')
+	{
+		p->flag[i] = '0';
+		i++;
+	}
+	i = 0;
+	while (p->modif[i] != '\0')
+	{
+		p->modif[i] = '0';
+		i++;
+	}
+	p->dot = 0;
+	p->precision = 0;
+	p->size = 0;
+}
+
+void		ft_opt_flag(t_printf *p)
+{
+	if (p->format[p->idx2] == '#')
+	{
+		p->flag[DIESE] = 1;
+		p->idx2++;
+	}
+	else if (p->format[p->idx2] == '0')
+	{
+		p->flag[ZERO] = 1;
+		p->idx2++;
+	}
+	else if (p->format[p->idx2] == '-')
+	{
+		p->flag[LESS] = 1;
+		p->idx2++;
+	}
+	else if (p->format[p->idx2] == '+')
+	{
+		p->flag[MORE] = 1;
+		p->idx2++;
+	}
+	else if (p->format[p->idx2] == ' ')
+	{
+		p->flag[SPACE] = 1;
+		p->idx2++;
+	}
+}
+
+void		ft_opt_specifier(t_printf *p)
+{
+	if ((p->format[p->idx2] == '-' || p->format[p->idx2] == '+' ||
+				p->format[p->idx2] == '#' || p->format[p->idx2] == '0' ||
+				p->format[p->idx2] == ' '))
+		ft_opt_flag(p);
+	if (ft_isdigit(p->format[p->idx2]) && p->format[p->idx2] != '0')
+		ft_opt_size(p);
+	if (p->format[p->idx2] == 'h' || p->format[p->idx2] == 'l' ||
+			p->format[p->idx2] == 'j' || p->format[p->idx2] == 'z')
+		ft_opt_modif(p);
+	if (p->format[p->idx2] == '.')
+		ft_opt_precision(p);
+}
+
+int			ft_opt(t_printf *p)
+{
+	if (p->format[p->idx2 + 1] == '%' || p->format[p->idx2] == '\0')
+		return (1);
+	while ((p->format[p->idx2] == '-' || p->format[p->idx2] == '+' ||
+				p->format[p->idx2] == '#' || p->format[p->idx2] == '0' ||
+				p->format[p->idx2] == ' ' || p->format[p->idx2] == 'h' ||
+				p->format[p->idx2] == 'l' || p->format[p->idx2] == 'j' ||
+				p->format[p->idx2] == 'z' || p->format[p->idx2] == '.' ||
+				(ft_isdigit(p->format[p->idx2]))) && p->format[p->idx2] != '\0')
+		ft_opt_specifier(p);
+	return (1);
 }

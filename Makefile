@@ -21,6 +21,7 @@ INC = printf.h
 SRC =main.c \
 	 ft_printf.c\
 	 ft_printf2.c\
+	 ft_printf3.c\
 	 ft_nb.c\
 	 ft_nb2.c\
 	 ft_nb3.c\
@@ -35,7 +36,7 @@ $(NAME) : $(OBJ)
 	make -C libft
 	#cp libft/libft.a ./libftprintf.a
 	#cd libft ; make ; cd ..
-	#$(CC) $(FLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
 	ar -rc temp.a $(OBJ)
 	libtool -static -o libftprintf.a temp.a libft/libft.a
 	ranlib libftprintf.a
@@ -46,7 +47,7 @@ clean :
 	rm $(OBJ)
 
 fclean : clean
-	#rm -rf $(NAME) 
+	rm -rf $(NAME) 
 	rm -rf libftprintf.a
 
 re : fclean all

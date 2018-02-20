@@ -17,9 +17,7 @@ void		ft_treatment(t_printf *p)
 	int	a;
 
 	a = 1;
-	if (p->format[p->idx2] == 'i' || p->format[p->idx2] == 'd')
-		ft_int(p);
-	else if (p->format[p->idx2] == 'u')
+	if (p->format[p->idx2] == 'u')
 		ft_uint(p);
 	else if (p->format[p->idx2] == 'x') 
 		ft_xint(p);
@@ -29,10 +27,13 @@ void		ft_treatment(t_printf *p)
 		ft_oint(p);
 	else if (p->format[p->idx2] == 'O')
 		ft_omajint(p);
-	else if (p->format[p->idx2] == 'D')
+	else if (p->format[p->idx2] == 'D' || ((p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i') && (p->modif[L] == 1 || p->modif[LL] == 1)))
 		ft_long(p);
 	else if (p->format[p->idx2] == 's')
 			ft_str(p);
+	else if (p->format[p->idx2] == 'i' || p->format[p->idx2] == 'd')
+		ft_int(p);
+
 		else
 		{
 			a = 0;
@@ -93,7 +94,11 @@ int			ft_printf(const char *format, ...)
 			ft_buf(&p);
 		}
 		if (p.format[p.idx2++] == '%')
+		{
+			ft_init_opt(&p);
+			ft_opt(&p);
 			ft_treatment(&p);
+		}
 	}
 	va_end(p.ap);
 	return (p.len);
