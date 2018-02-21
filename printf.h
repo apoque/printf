@@ -66,6 +66,7 @@ void					ft_opt_precision(t_printf *p);
 void					ft_init_opt(t_printf *p);
 void					ft_put_space(t_printf *p, int flag);
 void					ft_put_precision(t_printf *p, int zeros);
+int						ft_wchar_len(wint_t c);
 
 char					*ft_strdup(char *str);
 char					*ft_strnew(int len);

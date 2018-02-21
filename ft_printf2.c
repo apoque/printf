@@ -19,11 +19,11 @@ void		ft_treatment2(t_printf *p)
 	a = 1;
 	if (p->format[p->idx2] == 'S')
 		ft_wstr(p);
-	else if (p->format[p->idx2] == 'c')
+	else if (p->format[p->idx2] == 'c' && p->modif[L] == 0)
 		ft_char(p);
 	else if (p->format[p->idx2] == 'U')
 		ft_umajint(p);
-	else if (p->format[p->idx2] == 'C')
+	else if (p->format[p->idx2] == 'C' || (p->format[p->idx2] == 'c' && p->modif[L] == 1))
 		ft_wchar(p);
 	else
 		a = 0;
