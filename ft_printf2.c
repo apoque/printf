@@ -36,15 +36,15 @@ void		ft_init_opt(t_printf *p)
 	int	i;
 
 	i = 0;
-	while (p->flag[i] != '\0')
+	while (i != 4)
 	{
-		p->flag[i] = '0';
+		p->flag[i] = 0;
 		i++;
 	}
 	i = 0;
-	while (p->modif[i] != '\0')
+	while (i != 5)
 	{
-		p->modif[i] = '0';
+		p->modif[i] = 0;
 		i++;
 	}
 	p->dot = 0;

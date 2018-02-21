@@ -29,8 +29,11 @@ void	ft_long2(t_printf *p, long i, int zeros)
 		ft_put_space(p, 1);
 	if (zeros > 0)
 		ft_put_precision(p, zeros);
-	p->buf = ft_ltoa(i);
-	ft_buf(p);
+	if (!(p->dot == 1 && i == 0))
+		{
+			p->buf = ft_ltoa(i);
+			ft_buf(p);
+		}
 	if (p->size > 0 && (p->flag[LESS] == 1))
 		ft_put_space(p, 2);
 }
@@ -44,8 +47,12 @@ void	ft_long(t_printf *p)
 
 	i = va_arg(p->ap, long int);
 	zeros = p->precision - ft_strlen(ft_ltoa((tmp = (i < 0) ? -i : i )));
+	zeros = (p->dot == 1 && i == 0) ? zeros + 1 : zeros;
 	zeros = (zeros < 0) ? 0 : zeros;
 	p->size = p->size - (zeros + ft_strlen(ft_ltoa(i)) + (tmp = (p->flag[MORE] == 1 && i >= 0) ? 1 : 0));
+	p->size = (p->dot == 1 && i == 0) ? p->size + 1 : p->size;
+	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
+		p->size--;
 	if (p->size > 0 && (p->flag[ZERO] != 1 || p->precision > 0) && (p->flag[LESS] != 1))
 		ft_put_space(p, 2);
 	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
