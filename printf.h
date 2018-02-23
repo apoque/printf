@@ -39,6 +39,8 @@ typedef struct			s_printf
 	int					idx1;
 	int					idx2;
 	int					len;
+	int					txt;
+	int					error;
 	int					dot;
 	int					precision;
 	int					size;
@@ -66,6 +68,7 @@ void					ft_opt_precision(t_printf *p);
 void					ft_init_opt(t_printf *p);
 void					ft_put_space(t_printf *p, int flag);
 void					ft_put_precision(t_printf *p, int zeros);
+void					ft_conv_wchar(t_printf *p, wchar_t c, char *str);
 int						ft_wchar_len(wint_t c);
 
 char					*ft_strdup(char *str);
@@ -82,4 +85,5 @@ void					ft_putstr(char *str);
 void					ft_putchar(int c);
 void					ft_putwchar(wint_t c);
 char					ft_toupper(int c);
+void					ft_bzero(void *s, int n);
 #endif

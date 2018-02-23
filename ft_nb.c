@@ -129,6 +129,8 @@ void	ft_int(t_printf *p)
 	int	tmp;
 	int	zeros;
 
+	if (p->txt == 1)
+		ft_buf(p);
 	i = va_arg(p->ap, int);
 	zeros = p->precision - ft_strlen(ft_itoa((tmp = (i < 0) ? -i : i )));
 	zeros = (p->dot == 1 && i == 0) ? zeros + 1 : zeros;

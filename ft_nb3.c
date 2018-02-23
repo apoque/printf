@@ -45,6 +45,8 @@ void	ft_long(t_printf *p)
 	long	tmp;
 	int	zeros;
 
+	if (p->txt == 1)
+		ft_buf(p);
 	i = va_arg(p->ap, long int);
 	zeros = p->precision - ft_strlen(ft_ltoa((tmp = (i < 0) ? -i : i )));
 	zeros = (p->dot == 1 && i == 0) ? zeros + 1 : zeros;
@@ -67,6 +69,8 @@ void		ft_umajint(t_printf *p)
 {
 	unsigned long	nb;
 
+	if (p->txt == 1)
+		ft_buf(p);
 	nb = (unsigned int)va_arg(p->ap, long int);
 	p->buf = ft_uitoa(nb);
 	ft_buf(p);

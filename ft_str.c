@@ -41,6 +41,7 @@ void	ft_wstr(t_printf *p)
 {
 	wchar_t *str;
 
+	ft_buf(p);
 	str = va_arg(p->ap, wchar_t *);
 	while (*str != L'\0')
 	{
@@ -52,6 +53,7 @@ void	ft_wstr(t_printf *p)
 
 void	ft_str(t_printf *p)
 {
+	ft_buf(p);
 	p->buf = ft_strdup(va_arg(p->ap, char *));
 	ft_buf(p);
 }

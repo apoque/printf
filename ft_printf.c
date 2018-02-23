@@ -48,6 +48,7 @@ void		ft_txt(t_printf *p)
 	int	i;
 
 	i = 0;
+	p->txt = 1;
 	tmp = (char *)malloc(sizeof(char) * (p->idx2 - p->idx1 + 1));
 	tmp[p->idx2 - p->idx1] = '\0';
 	while (p->idx1 < p->idx2)
@@ -62,9 +63,14 @@ void		ft_txt(t_printf *p)
 
 void		ft_buf(t_printf *p)
 {
-	p->len = p->len + ft_strlen(p->buf);
-	ft_putstr(p->buf);
+	char	*tmp;
+
+	tmp = ft_strdup(p->buf);
+	p->buf = ft_strdup(p->buf);
+	p->len = p->len + ft_strlen(tmp);
+	ft_putstr(tmp);
 	free(p->buf);
+	free(tmp);
 }
 
 void		ft_init_p(t_printf *p, const char *format)
@@ -74,6 +80,7 @@ void		ft_init_p(t_printf *p, const char *format)
 	p->idx1 = 0;
 	p->idx2 = 0;
 	p->len = 0;
+	p->error = 0;
 	p->format = format;
 }
 
@@ -83,23 +90,23 @@ int			ft_printf(const char *format, ...)
 
 	ft_init_p(&p, format);
 	va_start(p.ap, format);
-	while (p.format[p.idx1])
+	while (p.format[p.idx1] && p.error != -1)
 	{
 		p.idx1 = p.idx2;
+		p.txt = 0;
 		while (p.format[p.idx2] != '%' && p.format[p.idx2] != '\0')
 			p.idx2++;
 		if (p.idx1 != p.idx2)
-		{
 			ft_txt(&p);
-			ft_buf(&p);
-		}
 		if (p.format[p.idx2++] == '%')
 		{
 			ft_init_opt(&p);
 			ft_opt(&p);
 			ft_treatment(&p);
 		}
+		if (p.txt == 1 && p.idx1 == ft_strlen((char *)p.format))
+			ft_buf(&p);
 	}
 	va_end(p.ap);
-	return (p.len);
+	return (p.len = (p.error != -1) ? p.len : -1);
 }

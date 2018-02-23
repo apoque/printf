@@ -14,6 +14,8 @@
 
 void	ft_uint(t_printf *p)
 {
+	if (p->txt == 1)
+		ft_buf(p);
 	p->buf = ft_uitoa(va_arg(p->ap, unsigned int));
 	ft_buf(p);
 }
@@ -22,6 +24,8 @@ void	ft_oint(t_printf *p)
 {
 	unsigned int	nb;
 
+	if (p->txt == 1)
+		ft_buf(p);
 	nb = (unsigned int)va_arg(p->ap, unsigned int);
 	p->buf = ft_uitoabase(nb, 8);
 	ft_buf(p);
@@ -31,6 +35,8 @@ void	ft_omajint(t_printf *p)
 {
 	long int	nb;
 
+	if (p->txt == 1)
+		ft_buf(p);
 	nb = va_arg(p->ap, long int);
 	p->buf = ft_litoabase(nb, 8);
 	ft_buf(p);
@@ -41,6 +47,8 @@ void	ft_xmajint(t_printf *p)
 	unsigned int	nb;
 	int				i;
 
+	if (p->txt == 1)
+		ft_buf(p);
 	i = 0;
 	nb = (unsigned int)va_arg(p->ap, unsigned int);
 	p->buf = ft_uitoabase(nb, 16);
@@ -56,6 +64,8 @@ void	ft_xint(t_printf *p)
 {
 	unsigned int	nb;
 
+	if (p->txt == 1)
+		ft_buf(p);
 	nb = (unsigned int)va_arg(p->ap, unsigned int);
 	p->buf = ft_uitoabase(nb, 16);
 	ft_buf(p);

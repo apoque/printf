@@ -26,8 +26,8 @@ int		main(void)
 	str = L"Привет";
 	c = 256;
 
-	printf("[%d]\n", printf("%lc\n", 0x4e6));
-	printf("{%d}\n", ft_printf("%lc\n", 0x4e6));
+	printf("[%d]\n", printf("hello word\n%d\n", 9));
+	printf("{%d}\n", ft_printf("hello word\n%d\n", 9));
 	//printf("%ls\n", str);
 	//ft_printf("%S\n", str);
 	return (i);

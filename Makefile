@@ -27,6 +27,7 @@ SRC =main.c \
 	 ft_nb3.c\
 	 ft_str.c\
 	 ft_char.c\
+	 ft_conv_wchar.c\
 
 OBJ = $(SRC:.c=.o)
 
