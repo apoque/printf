@@ -63,3 +63,12 @@ void			ft_conv_wchar(t_printf *p, wchar_t c,char str[5])
 		ft_unicode4(c, str);
 }
 
+int				ft_get_a(wchar_t c)
+{
+	int	a;
+
+	a = 0;
+	while (c >> a)
+		a++;
+	return (a);
+}

@@ -29,7 +29,7 @@ void		ft_treatment(t_printf *p)
 		ft_omajint(p);
 	else if (p->format[p->idx2] == 'D' || ((p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i') && (p->modif[L] == 1 || p->modif[LL] == 1)))
 		ft_long(p);
-	else if (p->format[p->idx2] == 's')
+	else if (p->format[p->idx2] == 's' && p->modif[L] != 1)
 			ft_str(p);
 	else if (p->format[p->idx2] == 'i' || p->format[p->idx2] == 'd')
 		ft_int(p);

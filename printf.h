@@ -70,6 +70,9 @@ void					ft_put_space(t_printf *p, int flag);
 void					ft_put_precision(t_printf *p, int zeros);
 void					ft_conv_wchar(t_printf *p, wchar_t c, char *str);
 int						ft_wchar_len(wint_t c);
+int						ft_wstrlen(wchar_t *str);
+int						ft_get_a(wchar_t c);
+int						ft_char_size(int a, int nb);
 
 char					*ft_strdup(char *str);
 char					*ft_strnew(int len);
@@ -86,4 +89,6 @@ void					ft_putchar(int c);
 void					ft_putwchar(wint_t c);
 char					ft_toupper(int c);
 void					ft_bzero(void *s, int n);
+char					*ft_strndup(const char *src, int n);
+char					*ft_strjoin(const char *s1, const char *s2);
 #endif

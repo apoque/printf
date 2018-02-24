@@ -66,3 +66,36 @@ void	ft_char(t_printf *p)
 	if (p->size > 0 && p->flag[LESS] == 1)
 		ft_put_space(p, 2);
 }
+
+int		ft_char_size(int a, int nb)
+{
+	if (a <= 8)
+		nb += 1;
+	else if (a > 8 && a <= 11)
+		nb += 2;
+	else if (a > 11 && a <= 16)
+		nb += 3;
+	else if (a > 16 && a <= 21)
+		nb += 4;
+	return (nb);
+}
+
+int		ft_wstrlen(wchar_t *str)
+{
+	int	i;
+
+	i = 0;
+	while (*str)
+	{
+		if (*str <= 0x7F)
+			i++;
+		else if (*str <= 0x7FF)
+			i += 2;
+		else if (*str <= 0xFFFF)
+			i += 3;
+		else if (*str <= 0x10FFFF)
+			i += 4;
+		str++;
+	}
+	return (i);
+}

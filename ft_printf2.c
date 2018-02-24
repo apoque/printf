@@ -17,7 +17,7 @@ void		ft_treatment2(t_printf *p)
 	int	a;
 
 	a = 1;
-	if (p->format[p->idx2] == 'S')
+	if (p->format[p->idx2] == 'S' || (p->format[p->idx2] == 's' && p->modif[L] == 1))
 		ft_wstr(p);
 	else if (p->format[p->idx2] == 'c' && p->modif[L] == 0)
 		ft_char(p);
