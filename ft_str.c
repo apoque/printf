@@ -12,21 +12,21 @@
 
 #include "printf.h"
 
-/*int		ft_wchar_len(wchar_t c)
-  {
-  if (c >= 0 && c <= 0x7F)
-  return (1);
-  else if (c >= 0x80 && c <= 0x7FF)
-  return (2);
-  else if ((c >= 0x800 && c <= 0xD7FF) || (c >= 0xE000 && c <= 0xFFFF))
-  return (3);
-  else if (c >= 0x10000 && c <= 0x10FFFF)
-  return (4);
-  else
-  return (-1);
-  }
+int		ft_wchar_len(wchar_t c)
+{
+	if (c >= 0 && c <= 0x7F)
+		return (1);
+	else if (c >= 0x80 && c <= 0x7FF)
+		return (2);
+	else if ((c >= 0x800 && c <= 0xD7FF) || (c >= 0xE000 && c <= 0xFFFF))
+		return (3);
+	else if (c >= 0x10000 && c <= 0x10FFFF)
+		return (4);
+	else
+		return (-1);
+}
 
-  int		ft_wstr_len(wchar_t *str)
+/*int		ft_wstr_len(wchar_t *str)
   {
   int	len;
   int	i;
@@ -127,7 +127,6 @@ void	ft_wstr(t_printf *p)
 		ft_bzero(buf, 5);
 		ft_conv_wchar(p, str[i], buf);
 		i++;
-		printf("str[i] = %c size = %d\n", str[i], ft_char_size(ft_get_a(str[i]), 0));
 		p->buf = ft_strjoin(p->buf, buf);
 	}
 	ft_wstr2(p, str);
