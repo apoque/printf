@@ -90,4 +90,6 @@ int					ft_sqrt(int nb);
 int					ft_factoriel(int nb);
 int					ft_power(int nb, int power);
 void				ft_wdmatch(char *to_find, char *str);
+char				*ft_strrev(char *str);
+char				*ft_itoabase_u(uintmax_t value, char *base);
 #endif

@@ -17,15 +17,15 @@ void		ft_treatment(t_printf *p)
 	int	a;
 
 	a = 1;
-	if (p->format[p->idx2] == 'u')
+	if (p->format[p->idx2] == 'u' && p->modif[L] != 1 && p->modif[LL] != 1)
 		ft_uint(p);
 	else if (p->format[p->idx2] == 'x') 
 		ft_xint(p);
 	else if (p->format[p->idx2] == 'X')
 		ft_xmajint(p);
-	else if (p->format[p->idx2] == 'o')
+	else if (p->format[p->idx2] == 'o' && p->modif[LL] != 1)
 		ft_oint(p);
-	else if (p->format[p->idx2] == 'O')
+	else if (p->format[p->idx2] == 'O' || p->format[p->idx2] == 'o')
 		ft_omajint(p);
 	else if (p->format[p->idx2] == 'D' || ((p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i') && (p->modif[L] == 1 || p->modif[LL] == 1)))
 		ft_long(p);

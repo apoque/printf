@@ -82,6 +82,7 @@ int						ft_atoi(char *str);
 char					*ft_itoa(int nb);
 char					*ft_uitoa(unsigned int nb);
 char					*ft_uitoabase(unsigned int nb, int base);
+char					*ft_itoabase_u(uintmax_t nb, char *str);
 char					*ft_ltoa(long int nb);
 char					*ft_litoabase(long int nb, int base);
 void					ft_putstr(char *str);
@@ -91,4 +92,5 @@ char					ft_toupper(int c);
 void					ft_bzero(void *s, int n);
 char					*ft_strndup(const char *src, int n);
 char					*ft_strjoin(const char *s1, const char *s2);
+char					*ft_strrev(char *str);
 #endif

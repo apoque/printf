@@ -30,10 +30,10 @@ void	ft_long2(t_printf *p, long i, int zeros)
 	if (zeros > 0)
 		ft_put_precision(p, zeros);
 	if (!(p->dot == 1 && i == 0))
-		{
-			p->buf = ft_ltoa(i);
-			ft_buf(p);
-		}
+	{
+		p->buf = ft_ltoa(i);
+		ft_buf(p);
+	}
 	if (p->size > 0 && (p->flag[LESS] == 1))
 		ft_put_space(p, 2);
 }
@@ -58,22 +58,11 @@ void	ft_long(t_printf *p)
 	if (p->size > 0 && (p->flag[ZERO] != 1 || p->precision > 0) && (p->flag[LESS] != 1))
 		ft_put_space(p, 2);
 	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
-		{
-			ft_putchar(' ');
-			p->len++;
-		}
-		ft_long2(p, i, zeros);
-}
-
-void		ft_umajint(t_printf *p)
-{
-	unsigned long	nb;
-
-	if (p->txt == 1)
-		ft_buf(p);
-	nb = (unsigned int)va_arg(p->ap, long int);
-	p->buf = ft_uitoa(nb);
-	ft_buf(p);
+	{
+		ft_putchar(' ');
+		p->len++;
+	}
+	ft_long2(p, i, zeros);
 }
 
 void		ft_put_space(t_printf *p, int flag)
