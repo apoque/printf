@@ -49,6 +49,7 @@ typedef struct			s_printf
 int						ft_printf(const char *format, ...);
 void					ft_buf(t_printf *p);
 void					ft_int(t_printf *p);
+void					ft_p(t_printf *p);
 void					ft_long(t_printf *p);
 void					ft_uint(t_printf *p);
 void					ft_umajint(t_printf *p);
@@ -69,6 +70,7 @@ void					ft_init_opt(t_printf *p);
 void					ft_put_space(t_printf *p, int flag);
 void					ft_put_precision(t_printf *p, int zeros);
 void					ft_conv_wchar(t_printf *p, wchar_t c, char *str);
+void					ft_print_x2(t_printf *p, unsigned long u, int zeros);
 int						ft_wchar_len(wint_t c);
 int						ft_wstrlen(wchar_t *str);
 int						ft_get_a(wchar_t c);

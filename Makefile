@@ -27,6 +27,7 @@ SRC =main.c \
 	 ft_o.c\
 	 ft_u.c\
 	 ft_x.c\
+	 ft_p.c\
 	 ft_str.c\
 	 ft_char.c\
 	 ft_conv_wchar.c\

@@ -26,21 +26,21 @@ int		main(void)
 {
 	unsigned int		i;
 	void	*p;
-	wchar_t	*str;
+	wchar_t	str[4];
 	wchar_t	c;
 
-	setlocale(LC_ALL, "en_US.UTF-8");
+	setlocale(LC_ALL, "");
 	i = 0;
 	p = &i;
-	/*str[0] = 'S';
+	str[0] = 'S';
 	str[1] = 254;
 	str[2] = 'u';
-	str[3] = '\0';*/
-	str = L"S˛";
+	str[3] = '\0';
+	//str = L"S˛";
 	c = L'˛';
 
-	printf("[%d]\n", printf("%#-8.3o\n", 0));
-	printf("{%d}\n", ft_printf("%#-8.3o\n", 0));
+	printf("[%d]\n", printf("%20p\n", NULL));
+	printf("{%d}\n", ft_printf("%20p\n", NULL));
 	//printf("%ls\n", str);
 	//ft_printf("%S\n", str);
 	return (i);
