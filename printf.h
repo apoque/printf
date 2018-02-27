@@ -48,6 +48,7 @@ typedef struct			s_printf
 
 int						ft_printf(const char *format, ...);
 void					ft_buf(t_printf *p);
+void					ft_percent(t_printf *p);
 void					ft_int(t_printf *p);
 void					ft_p(t_printf *p);
 void					ft_long(t_printf *p);

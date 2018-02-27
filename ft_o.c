@@ -23,7 +23,7 @@ void	ft_print_o2(t_printf *p, unsigned long u, int zeros)
 		ft_putchar('+');
 		p->len++;
 	}
-	if (p->size > 0 && p->flag[ZERO] == 1 && p->dot == 0 && p->flag[DIESE] != 1)
+	if (p->size > 0 && p->flag[ZERO] == 1 && ((p->dot == 0 && p->flag[DIESE] != 1) || u == 0))
 		ft_put_space(p, 1);
 	if (zeros > 0)
 		ft_put_precision(p, zeros);
@@ -48,7 +48,7 @@ void	ft_print_o(t_printf *p, unsigned long u)
 	p->size = (p->dot == 1 && u == 0 && p->flag[DIESE] != 1) ? p->size + 1 : p->size;
 	if (p->flag[SPACE] == 1 && p->flag[MORE] == 0)
 		p->size--;
-	if (p->size > 0 && (p->flag[ZERO] != 1 || p->dot == 1 || p->flag[DIESE] == 1) && p->flag[LESS] != 1)
+	if (p->size > 0 && ((p->flag[ZERO] != 1 || p->dot == 1 || (p->flag[DIESE] == 1 && p->flag[ZERO] != 1 && u == 0))) && p->flag[LESS] != 1)
 		ft_put_space(p, 2);
 	if (p->flag[SPACE] == 1 && p->flag[MORE] == 0)
 	{

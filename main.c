@@ -39,8 +39,8 @@ int		main(void)
 	//str = L"S˛";
 	c = L'˛';
 
-	printf("[%d]\n", printf("%20p\n", NULL));
-	printf("{%d}\n", ft_printf("%20p\n", NULL));
+	printf("[%d]\n", printf("%#012O et %04.2o et %#2o et %024hho\n", 0, 0, 0, (unsigned char)12));
+	printf("{%d}\n", ft_printf("%#012O et %04.2o et %#2o et %024hho\n", 0, 0, 0, (unsigned char)12));
 	//printf("%ls\n", str);
 	//ft_printf("%S\n", str);
 	return (i);

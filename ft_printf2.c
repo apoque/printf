@@ -27,6 +27,8 @@ void		ft_treatment2(t_printf *p)
 		ft_wchar(p);
 	else if (p->format[p->idx2] == 'p')
 		ft_p(p);
+	else if (p->format[p->idx2] == '%')
+		ft_percent(p);
 	else
 		a = 0;
 	if (a == 1)
@@ -38,13 +40,13 @@ void		ft_init_opt(t_printf *p)
 	int	i;
 
 	i = 0;
-	while (i != 4)
+	while (i != 5)
 	{
 		p->flag[i] = 0;
 		i++;
 	}
 	i = 0;
-	while (i != 5)
+	while (i != 6)
 	{
 		p->modif[i] = 0;
 		i++;
@@ -100,7 +102,7 @@ void		ft_opt_specifier(t_printf *p)
 
 int			ft_opt(t_printf *p)
 {
-	if (p->format[p->idx2 + 1] == '%' || p->format[p->idx2] == '\0')
+	if (p->format[p->idx1 + 1] == '%' || p->format[p->idx2] == '\0')
 		return (1);
 	while ((p->format[p->idx2] == '-' || p->format[p->idx2] == '+' ||
 				p->format[p->idx2] == '#' || p->format[p->idx2] == '0' ||
