@@ -91,7 +91,7 @@ char					*ft_ltoa(long int nb);
 char					*ft_litoabase(long int nb, int base);
 void					ft_putstr(char *str);
 void					ft_putchar(int c);
-void					ft_putwchar(wint_t c);
+void					ft_putwchar(wchar_t c);
 char					ft_toupper(int c);
 void					ft_bzero(void *s, int n);
 char					*ft_strndup(const char *src, int n);
