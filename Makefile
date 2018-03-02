@@ -14,7 +14,7 @@ CC = gcc
 
 CFLAGS = -Werror -Wextra -Wall
 
-NAME = printf
+NAME = libftprintf.a
 
 INC = printf.h
 
@@ -39,21 +39,16 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	make -C libft
-	cp libft/libft.a ./libftprintf.a
-	#cd libft ; make ; cd ..
-	#$(CC) $(CFLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
-	ar -rc libftprintf.a $(OBJ)
-	#libtool -static -o libftprintf.a temp.a libft/libft.a
-	ranlib libftprintf.a
-	#rm temp.a
+	cp libft/libft.a ./$(NAME)
+	ar -rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean :
 	cd libft ; make fclean ; cd ..
 	rm $(OBJ)
 
 fclean : clean
-	#rm  $(NAME) 
-	rm libftprintf.a
+	rm $(NAME)
 
 re : fclean all
 
