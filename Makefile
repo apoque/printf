@@ -39,9 +39,9 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	make -C libft
-	#cp libft/libft.a ./libftprintf.a
+	cp libft/libft.a ./libftprintf.a
 	#cd libft ; make ; cd ..
-	$(CC) $(CFLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
+	#$(CC) $(CFLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
 	ar -rc libftprintf.a $(OBJ)
 	#libtool -static -o libftprintf.a temp.a libft/libft.a
 	ranlib libftprintf.a
@@ -52,7 +52,7 @@ clean :
 	rm $(OBJ)
 
 fclean : clean
-	rm  $(NAME) 
+	#rm  $(NAME) 
 	rm libftprintf.a
 
 re : fclean all
