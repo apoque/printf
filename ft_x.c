@@ -53,6 +53,7 @@ void	ft_print_x(t_printf *p, unsigned long u)
 void	ft_xint(t_printf *p)
 {
 	unsigned int		o;
+	unsigned char		a;
 	unsigned long		v;
 	unsigned long long	u;
 	size_t				z;
@@ -70,6 +71,12 @@ void	ft_xint(t_printf *p)
 		v = va_arg(p->ap, unsigned long);
 		p->buf = ft_itoabase_u(v, "0123456789abcdef");
 		ft_print_x(p, v);
+	}
+	else if (p->modif[HH] == 1)
+	{
+		a = va_arg(p->ap, unsigned int);
+		p->buf = ft_itoabase_u(a, "0123456789abcdef");
+		ft_print_x(p, a);
 	}
 	else if (p->modif[J] == 1 || p->modif[LL] == 1)
 	{
@@ -95,6 +102,8 @@ void		ft_xmajint(t_printf *p)
 		o = (unsigned long int)va_arg(p->ap, unsigned long int);
 	else if (p->modif[LL] == 1 || p->modif[J] == 1)
 		o = (unsigned long long int)va_arg(p->ap, unsigned long long int);
+	else if (p->modif[HH] == 1)
+		o = (unsigned char)va_arg(p->ap, unsigned int);
 	else
 		o = (unsigned int)va_arg(p->ap, unsigned int);
 	p->buf = ft_itoabase_u(o, "0123456789ABCDEF");

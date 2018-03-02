@@ -18,11 +18,6 @@ void	ft_print_o2(t_printf *p, unsigned long u, int zeros)
 		ft_putchar('0');
 		p->len++;
 	}
-	if (p->flag[MORE] == 1)
-	{
-		ft_putchar('+');
-		p->len++;
-	}
 	if (p->size > 0 && p->flag[ZERO] == 1 && p->flag[LESS] != 1 && ((p->dot == 0 && p->flag[DIESE] != 1) || u == 0))
 		ft_put_space(p, 1);
 	if (zeros > 0)
@@ -46,21 +41,16 @@ void	ft_print_o(t_printf *p, unsigned long u)
 	tmp = ((p->flag[DIESE] == 1 && (u != 0 || p->dot == 1)) && zeros == 0) ? 1 : 0;
 	p->size = p->size - (zeros + ft_strlen(p->buf) + p->flag[MORE] + tmp);
 	p->size = (p->dot == 1 && u == 0 && p->flag[DIESE] != 1) ? p->size + 1 : p->size;
-	if (p->flag[SPACE] == 1 && p->flag[MORE] == 0)
-		p->size--;
 	if (p->size > 0 && ((p->flag[ZERO] != 1 || p->dot == 1 || (p->flag[DIESE] == 1 && p->flag[ZERO] != 1 && u == 0))) && p->flag[LESS] != 1)
 		ft_put_space(p, 2);
-	if (p->flag[SPACE] == 1 && p->flag[MORE] == 0)
-	{
-		ft_putchar(' ');
-		p->len++;
-	}
 	ft_print_o2(p, u, zeros);
 }
 
 void	ft_oint(t_printf *p)
 {
 	unsigned int		o;
+	unsigned short		s;
+	unsigned char		a;
 	unsigned long long	u;
 	size_t				z;
 
@@ -77,6 +67,18 @@ void	ft_oint(t_printf *p)
 		u = va_arg(p->ap, unsigned long long);
 		p->buf = ft_itoabase_u(u, "01234567");
 		ft_print_o(p, u);
+	}
+	else if (p->modif[H] == 1)
+	{
+		s = (unsigned short)va_arg(p->ap, unsigned int);
+		p->buf = ft_itoabase_u(s, "01234567");
+		ft_print_o(p, s);
+	}
+	else if (p->modif[HH] == 1)
+	{
+		a = va_arg(p->ap, unsigned int);
+		p->buf = ft_itoabase_u(a, "01234567");
+		ft_print_o(p, a);
 	}
 	else
 	{

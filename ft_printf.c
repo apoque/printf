@@ -23,7 +23,7 @@ void		ft_treatment(t_printf *p)
 		ft_xint(p);
 	else if (p->format[p->idx2] == 'X')
 		ft_xmajint(p);
-	else if (p->format[p->idx2] == 'o' && p->modif[LL] != 1)
+	else if (p->format[p->idx2] == 'o' && p->modif[LL] != 1 && p->modif[L] != 1)
 		ft_oint(p);
 	else if (p->format[p->idx2] == 'O' || p->format[p->idx2] == 'o')
 		ft_omajint(p);

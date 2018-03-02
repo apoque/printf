@@ -44,6 +44,7 @@ void	ft_print_u(t_printf *p, unsigned long u)
 void	ft_uint(t_printf *p)
 {
 	unsigned int	u;
+	unsigned char	a;
 	size_t			z;
 	uintmax_t		x;
 
@@ -60,6 +61,12 @@ void	ft_uint(t_printf *p)
 		x = va_arg(p->ap, size_t);
 		p->buf = ft_itoabase_u(x, "0123456789");
 		ft_print_u(p, x);
+	}
+	else if (p->modif[HH] == 1 && p->format[p->idx2] == 'u')
+	{
+		a = va_arg(p->ap, unsigned int);
+		p->buf = ft_itoabase_u(a, "0123456789");
+		ft_print_u(p, a);
 	}
 	else
 	{

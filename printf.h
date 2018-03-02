@@ -96,5 +96,6 @@ char					ft_toupper(int c);
 void					ft_bzero(void *s, int n);
 char					*ft_strndup(const char *src, int n);
 char					*ft_strjoin(const char *s1, const char *s2);
+int					ft_strcmp(char *s1, char *s2);
 char					*ft_strrev(char *str);
 #endif

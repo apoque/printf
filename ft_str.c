@@ -112,7 +112,7 @@ void	ft_wstr(t_printf *p)
 		ft_buf(p);
 	i = 0;
 	str = va_arg(p->ap, wchar_t *);
-	if (str == NULL)
+	if (str == NULL || ft_strcmp((char *)str, "(null)") == 0)
 	{
 		str = L"(null)";
 		p->modif[Z] = -5;
