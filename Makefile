@@ -10,16 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-C = gcc
+CC = gcc
 
-FLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall
 
 NAME = libftprintf.a
 
 INC = printf.h
 
-SRC =main.c \
-	 ft_printf.c\
+SRC =ft_printf.c\
 	 ft_printf2.c\
 	 ft_printf3.c\
 	 ft_i.c\
@@ -38,17 +37,17 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	make -C libft
-	cp libft/libft.a ./$(NAME)
-	ar -rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@make -C libft
+	@cp libft/libft.a ./$(NAME)
+	@ar -rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 clean :
-	cd libft ; make fclean ; cd ..
-	rm $(OBJ)
+	@cd libft ; make fclean ; cd ..
+	@rm $(OBJ)
 
 fclean : clean
-	rm $(NAME)
+	@rm $(NAME)
 
 re : fclean all
 
