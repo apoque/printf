@@ -23,7 +23,7 @@ void	ft_print_o2(t_printf *p, unsigned long u, int zeros)
 		ft_putchar('+');
 		p->len++;
 	}
-	if (p->size > 0 && p->flag[ZERO] == 1 && ((p->dot == 0 && p->flag[DIESE] != 1) || u == 0))
+	if (p->size > 0 && p->flag[ZERO] == 1 && p->flag[LESS] != 1 && ((p->dot == 0 && p->flag[DIESE] != 1) || u == 0))
 		ft_put_space(p, 1);
 	if (zeros > 0)
 		ft_put_precision(p, zeros);

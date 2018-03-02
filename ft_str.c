@@ -26,23 +26,6 @@ int		ft_wchar_len(wchar_t c)
 		return (-1);
 }
 
-/*int		ft_wstr_len(wchar_t *str)
-  {
-  int	len;
-  int	i;
-
-  i = 0;
-  len = 0;
-//printf("str= %ls\n<i = %d, len = %d>\n", str, i, len);
-while (str[i])
-{
-len = len + ft_wchar_len(str[i]);
-//printf("<i = %d, len = %d\n", i, ft_wchar_len(str[i]));
-i++;
-}
-return (len);
-}*/
-
 int		calc_wstrlen(wchar_t *str, int precision, int i)
 {
 	if (*str == '\0' || precision == 0)
@@ -91,18 +74,23 @@ void	ft_wstr2(t_printf *p, wchar_t *str)
 	int	i;
 	int	len_without_error;
 	int	len_precision;
+	char	*s;
 
+	//printf("yo\n");
 	i = 0;
 	len_without_error = 0;
 	len_precision = 0;
-	if (p->buf == NULL)
+	if (p->modif[Z] == -5)
 		p->buf = ft_strdup("(null)");
 	if (p->error == -1 && p->dot == 1 && p->precision > 0)
 		ft_get_lens(p, str, &len_without_error, &len_precision);
 	if (p->error != -1 || ((len_without_error >= len_precision) && p->dot == 1))
 	{
 		i = (p->dot == 1 && p->precision < ft_wstrlen(str)) ? calc_wstrlen(str, p->precision, 0) : ft_wstrlen(str);
-		p->buf = ft_strndup(p->buf, i);
+		s = ft_strdup(p->buf);
+		free(p->buf);
+		p->buf = ft_strndup(s, i);
+		free(s);
 		p->error = 0;
 		p->size = p->size - ft_strlen(p->buf);
 		if (p->size > 0 && p->flag[LESS] == 0)
@@ -115,19 +103,36 @@ void	ft_wstr2(t_printf *p, wchar_t *str)
 
 void	ft_wstr(t_printf *p)
 {
-	int i;
+	int		i;
 	wchar_t	*str;
-	char	buf[5];
+	char	*buf;
+	char	*tmp;
 
-	ft_buf(p);
+	if (p->txt == 1)
+		ft_buf(p);
 	i = 0;
 	str = va_arg(p->ap, wchar_t *);
-	while (str[i] != L'\0')
+	if (str == NULL)
 	{
+		str = L"(null)";
+		p->modif[Z] = -5;
+	}
+	else while (str[i] != L'\0' && p->modif[Z] == -5)
+	{
+		buf = (char *)malloc(sizeof(char) * 5);
 		ft_bzero(buf, 5);
 		ft_conv_wchar(p, str[i], buf);
 		i++;
-		p->buf = ft_strjoin(p->buf, buf);
+		if (p->buf != NULL)
+		{
+			tmp = ft_strdup(p->buf);
+			free(p->buf);
+			p->buf = ft_strjoin(tmp, buf);
+			free(tmp);
+		}
+		else
+			p->buf = ft_strdup(buf);
+		free(buf);
 	}
 	ft_wstr2(p, str);
 }
@@ -138,15 +143,16 @@ void	ft_str(t_printf *p)
 	int		len;
 
 	len = -1;
-	ft_buf(p);
+	if (p->txt == 1)
+		ft_buf(p);
 	if (p->dot == 1)
 		len = p->precision;
 	str = va_arg(p->ap, char *);
 	if (str == NULL)
-		str = "(null)";
-	if (len == -1)
+		p->buf = ft_strdup("(null)");
+	if (len == -1 && str != NULL)
 		p->buf = ft_strdup(str);
-	else
+	else if (len != -1)
 		p->buf = ft_strndup(str, len);
 	p->size = p->size - ft_strlen(p->buf);
 	if (p->size > 0 && p->flag[LESS] == 0)

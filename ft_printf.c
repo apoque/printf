@@ -17,7 +17,7 @@ void		ft_treatment(t_printf *p)
 	int	a;
 
 	a = 1;
-	if (p->format[p->idx2] == 'u' && p->modif[L] != 1 && p->modif[LL] != 1)
+	if ((p->format[p->idx2] == 'u' && p->modif[L] != 1 && p->modif[LL] != 1) || ((p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i') && p->modif[Z] == 1))
 		ft_uint(p);
 	else if (p->format[p->idx2] == 'x') 
 		ft_xint(p);
@@ -27,14 +27,13 @@ void		ft_treatment(t_printf *p)
 		ft_oint(p);
 	else if (p->format[p->idx2] == 'O' || p->format[p->idx2] == 'o')
 		ft_omajint(p);
-	else if (p->format[p->idx2] == 'D' || ((p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i') && (p->modif[L] == 1 || p->modif[LL] == 1)))
+	else if (p->format[p->idx2] == 'D' || ((p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i') && (p->modif[L] == 1 || p->modif[LL] == 1 || p->modif[J] == 1)))
 		ft_long(p);
 	else if (p->format[p->idx2] == 's' && p->modif[L] != 1)
 			ft_str(p);
 	else if (p->format[p->idx2] == 'i' || p->format[p->idx2] == 'd')
 		ft_int(p);
-
-		else
+	else
 		{
 			a = 0;
 			ft_treatment2(p);
@@ -63,20 +62,20 @@ void		ft_txt(t_printf *p)
 
 void		ft_buf(t_printf *p)
 {
-	char	*tmp;
-
-	tmp = ft_strdup(p->buf);
-	p->buf = ft_strdup(p->buf);
-	p->len = p->len + ft_strlen(tmp);
-	ft_putstr(tmp);
-	free(p->buf);
-	free(tmp);
+	p->len = p->len + ft_strlen(p->buf);
+	ft_putstr(p->buf);
+	if (p->buf != NULL && p->format[p->idx2] != 'c' && p->format[p->idx2] != 'C')
+	{
+		free(p->buf);
+		p->buf = NULL;
+	}
+	else
+		free(p->buf);
 }
 
 void		ft_init_p(t_printf *p, const char *format)
 {
-	p->buf = (char *)malloc(sizeof(char) * 1);
-	p->buf[0] = '\0';
+	p->buf = NULL;
 	p->idx1 = 0;
 	p->idx2 = 0;
 	p->len = 0;

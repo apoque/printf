@@ -75,13 +75,13 @@ void	ft_int2(t_printf *p, int i, int zeros)
 		ft_putchar('+');
 		p->len++;
 	}
-	if (i < 0)
+	if (i < 0 && i != INT_MIN)
 	{
 		ft_putchar('-');
 		p->len++;
 		i = -i;
 	}
-	if (p->size > 0 && (p->flag[ZERO] == 1 && p->precision == 0))
+	if (p->size > 0 && (p->flag[ZERO] == 1 && p->precision == 0) && p->flag[LESS] != 1)
 		ft_put_space(p, 1);
 	if (zeros > 0)
 		ft_put_precision(p, zeros);
@@ -96,26 +96,36 @@ void	ft_int2(t_printf *p, int i, int zeros)
 
 void	ft_int(t_printf *p)
 {
-	int	i;
-	int	tmp;
-	int	zeros;
+	int			i;
+	int			tmp;
+	int			zeros;
+	char		*str;
 
 	if (p->txt == 1)
 		ft_buf(p);
 	i = va_arg(p->ap, int);
-	zeros = p->precision - ft_strlen(ft_itoa((tmp = (i < 0) ? -i : i )));
+	str = ft_itoa((tmp = (i < 0) ? -i : i ));
+	zeros = p->precision - ft_strlen(str);
 	zeros = (p->dot == 1 && i == 0) ? zeros + 1 : zeros;
 	zeros = (zeros < 0) ? 0 : zeros;
-	p->size = p->size - (zeros + ft_strlen(ft_itoa(i)) + (tmp = (p->flag[MORE] == 1 && i >= 0) ? 1 : 0));
+	free(str);
+	str = ft_itoa(i);
+	p->size = p->size - (zeros + ft_strlen(str) + (tmp = (p->flag[MORE] == 1 && i >= 0) ? 1 : 0));
+	free(str);
 	p->size = (p->dot == 1 && i == 0) ? p->size + 1 : p->size;
 	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
 		p->size--;
-	if (p->size > 0 && (p->flag[ZERO] != 1 || p->precision > 0) && (p->flag[LESS] != 1))
+	if (p->size > 0 && (p->flag[ZERO] != 1 || p->precision > 0) && p->flag[LESS] != 1)
 		ft_put_space(p, 2);
 	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
 	{
 		ft_putchar(' ');
 		p->len++;
 	}
-	ft_int2(p, i, zeros);
+	if (p->modif[H] == 1)
+		ft_int2(p, (short int)i, zeros);
+	else if (p->modif[HH] == 1)
+		ft_int2(p, (signed char)i, zeros);
+	else
+		ft_int2(p, i, zeros);
 }

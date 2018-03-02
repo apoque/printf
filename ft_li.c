@@ -19,7 +19,7 @@ void	ft_long2(t_printf *p, long i, int zeros)
 		ft_putchar('+');
 		p->len++;
 	}
-	if (i < 0)
+	if (i < 0 && i != LONG_MIN)
 	{
 		ft_putchar('-');
 		p->len++;
@@ -43,15 +43,20 @@ void	ft_long(t_printf *p)
 {
 	long	i;
 	long	tmp;
-	int	zeros;
+	int		zeros;
+	char	*str;
 
 	if (p->txt == 1)
 		ft_buf(p);
 	i = va_arg(p->ap, long int);
-	zeros = p->precision - ft_strlen(ft_ltoa((tmp = (i < 0) ? -i : i )));
+	str = ft_ltoa((tmp = (i < 0) ? -i : i ));
+	zeros = p->precision - ft_strlen(str);
 	zeros = (p->dot == 1 && i == 0) ? zeros + 1 : zeros;
 	zeros = (zeros < 0) ? 0 : zeros;
-	p->size = p->size - (zeros + ft_strlen(ft_ltoa(i)) + (tmp = (p->flag[MORE] == 1 && i >= 0) ? 1 : 0));
+	free(str);
+	str = ft_ltoa(i);
+	p->size = p->size - (zeros + ft_strlen(str) + (tmp = (p->flag[MORE] == 1 && i >= 0) ? 1 : 0));
+	free(str);
 	p->size = (p->dot == 1 && i == 0) ? p->size + 1 : p->size;
 	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
 		p->size--;

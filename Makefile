@@ -41,7 +41,7 @@ $(NAME) : $(OBJ)
 	make -C libft
 	#cp libft/libft.a ./libftprintf.a
 	#cd libft ; make ; cd ..
-	$(CC) $(FLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -I/$(INC) libft/libft.a -o $(NAME)
 	ar -rc temp.a $(OBJ)
 	libtool -static -o libftprintf.a temp.a libft/libft.a
 	ranlib libftprintf.a

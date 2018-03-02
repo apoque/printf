@@ -28,10 +28,12 @@ int		main(void)
 	void	*p;
 	wchar_t	str[4];
 	wchar_t	c;
+	wchar_t *s;
 
 	setlocale(LC_ALL, "");
 	i = 0;
 	p = &i;
+	s = L"S„™ºÚÅÄÄS„";
 	str[0] = 'S';
 	str[1] = 254;
 	str[2] = 'u';
@@ -39,9 +41,11 @@ int		main(void)
 	//str = L"S˛";
 	c = L'˛';
 
-	printf("[%d]\n", printf("%#012O et %04.2o et %#2o et %024hho\n", 0, 0, 0, (unsigned char)12));
-	printf("{%d}\n", ft_printf("%#012O et %04.2o et %#2o et %024hho\n", 0, 0, 0, (unsigned char)12));
+	printf("[%d]\n", printf("42%18C42", (wchar_t)0));
+	printf("{%d}\n", ft_printf("42%18C42", (wchar_t)0));
 	//printf("%ls\n", str);
 	//ft_printf("%S\n", str);
+	//while (1)
+	;
 	return (i);
 }

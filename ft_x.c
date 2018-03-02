@@ -26,7 +26,7 @@ void	ft_print_x2(t_printf *p, unsigned long u, int zeros)
 			ft_putchar('x');
 		p->len += 2;
 	}
-	if (p->size > 0 && p->flag[ZERO] == 1 && p->dot != 1)
+	if (p->size > 0 && p->flag[ZERO] == 1 && p->dot != 1 && p->flag[LESS] != 1)
 		ft_put_space(p, 1);
 	if (zeros > 0)
 		ft_put_precision(p, zeros);
@@ -40,7 +40,6 @@ void	ft_print_x(t_printf *p, unsigned long u)
 {
 	int	zeros;
 	int	tmp;
-
 
 	zeros = p->precision - ft_strlen(p->buf);
 	zeros = (p->dot == 1 && u == 0) ? zeros + 1 : zeros;

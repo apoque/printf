@@ -15,6 +15,7 @@
 # include <wchar.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <limits.h>
 
 # define DIESE 0
 # define ZERO 1
@@ -72,7 +73,7 @@ void					ft_put_space(t_printf *p, int flag);
 void					ft_put_precision(t_printf *p, int zeros);
 void					ft_conv_wchar(t_printf *p, wchar_t c, char *str);
 void					ft_print_x2(t_printf *p, unsigned long u, int zeros);
-int						ft_wchar_len(wint_t c);
+int						ft_wchar_len(wchar_t c);
 int						ft_wstrlen(wchar_t *str);
 int						ft_get_a(wchar_t c);
 int						ft_char_size(int a, int nb);

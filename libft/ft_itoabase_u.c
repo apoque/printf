@@ -44,7 +44,7 @@ char		*ft_itoabase_u(uintmax_t value, char *base)
 	char	*str;
 
 	if (value == 0)
-		return ("0");
+		return (ft_strdup("0"));
 	k = ft_countdigits(value, base);
 	if (!(str = ft_strnew(k)))
 		return (0);
