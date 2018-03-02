@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+C = gcc
 
-CFLAGS = -Werror -Wextra -Wall
+FLAGS = -Werror -Wextra -Wall
 
 NAME = libftprintf.a
 
