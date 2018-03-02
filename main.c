@@ -41,8 +41,8 @@ int		main(void)
 	//str = L"S˛";
 	c = L'˛';
 
-	printf("[%d]\n", printf("42%18C42", (wchar_t)0));
-	printf("{%d}\n", ft_printf("42%18C42", (wchar_t)0));
+	printf("[%d]\n", printf("%S", s));
+	printf("{%d}\n", ft_printf("%S", s));
 	//printf("%ls\n", str);
 	//ft_printf("%S\n", str);
 	//while (1)

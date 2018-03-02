@@ -117,7 +117,7 @@ void	ft_wstr(t_printf *p)
 		str = L"(null)";
 		p->modif[Z] = -5;
 	}
-	else while (str[i] != L'\0' && p->modif[Z] == -5)
+	else while (str[i] != L'\0' && p->modif[Z] != -5)
 	{
 		buf = (char *)malloc(sizeof(char) * 5);
 		ft_bzero(buf, 5);

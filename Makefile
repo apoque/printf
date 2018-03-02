@@ -18,7 +18,8 @@ NAME = libftprintf.a
 
 INC = printf.h
 
-SRC =ft_printf.c\
+SRC =main.c\
+	 ft_printf.c\
 	 ft_printf2.c\
 	 ft_printf3.c\
 	 ft_i.c\
@@ -41,6 +42,7 @@ $(NAME) : $(OBJ)
 	@cp libft/libft.a ./$(NAME)
 	@ar -rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) -o printf $(NAME)
 
 clean :
 	@cd libft ; make fclean ; cd ..
