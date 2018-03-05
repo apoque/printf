@@ -70,5 +70,7 @@ int				ft_get_a(wchar_t c)
 	a = 0;
 	while (c >> a)
 		a++;
+	if (a > MB_CUR_MAX)
+		a = MB_CUR_MAX;
 	return (a);
 }

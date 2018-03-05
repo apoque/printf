@@ -28,7 +28,7 @@ char	*ft_strndup(const char *s, int n)
 	i = 0;
 	if (!dup)
 		return (NULL);
-	while (i < len)
+	while (i < len && str[i] != '\0')
 	{
 		dup[i] = str[i];
 		i++;

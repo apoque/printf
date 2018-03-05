@@ -31,6 +31,7 @@ int		main(void)
 	wchar_t *s;
 
 	setlocale(LC_ALL, "");
+	//printf("%i\n", MB_CUR_MAX);
 	i = 0;
 	p = &i;
 	s = L"S„™ºÚÅÄÄS„";
@@ -41,8 +42,8 @@ int		main(void)
 	//str = L"S˛";
 	c = L'˛';
 
-	printf("[%d]\n", printf("%zi", LLONG_MIN));
-	printf("{%d}\n", ft_printf("%zi", LLONG_MIN));
+	printf("[%d]\n", printf("{%C}", 0));
+	printf("{%d}\n", ft_printf("{% C}", 0));
 	//printf("%ls\n", str);
 	//ft_printf("%S\n", str);
 	//while (1)

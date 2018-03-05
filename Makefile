@@ -42,7 +42,7 @@ $(NAME) : $(OBJ)
 	@cp libft/libft.a ./$(NAME)
 	@ar -rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@$(CC) $(FLAGS) $(OBJ) -o printf $(NAME)
+	#@$(CC) $(FLAGS) $(OBJ) -o printf $(NAME)
 
 clean :
 	@cd libft ; make fclean ; cd ..

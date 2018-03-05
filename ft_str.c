@@ -76,7 +76,6 @@ void	ft_wstr2(t_printf *p, wchar_t *str)
 	int	len_precision;
 	char	*s;
 
-	//printf("yo\n");
 	i = 0;
 	len_without_error = 0;
 	len_precision = 0;
@@ -84,6 +83,7 @@ void	ft_wstr2(t_printf *p, wchar_t *str)
 		p->buf = ft_strdup("(null)");
 	if (p->error == -1 && p->dot == 1 && p->precision > 0)
 		ft_get_lens(p, str, &len_without_error, &len_precision);
+
 	if (p->error != -1 || ((len_without_error >= len_precision) && p->dot == 1))
 	{
 		i = (p->dot == 1 && p->precision < ft_wstrlen(str)) ? calc_wstrlen(str, p->precision, 0) : ft_wstrlen(str);
@@ -134,7 +134,8 @@ void	ft_wstr(t_printf *p)
 			p->buf = ft_strdup(buf);
 		free(buf);
 	}
-	ft_wstr2(p, str);
+	if (i != 0 || p->modif[Z] == -5)
+		ft_wstr2(p, str);
 }
 
 void	ft_str(t_printf *p)
@@ -149,7 +150,7 @@ void	ft_str(t_printf *p)
 		len = p->precision;
 	str = va_arg(p->ap, char *);
 	if (str == NULL)
-		p->buf = ft_strdup("(null)");
+		str = "(null)";
 	if (len == -1 && str != NULL)
 		p->buf = ft_strdup(str);
 	else if (len != -1)
