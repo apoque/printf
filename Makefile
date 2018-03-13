@@ -6,7 +6,7 @@
 #    By: apoque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/15 15:03:55 by apoque            #+#    #+#              #
-#    Updated: 2018/02/13 21:15:00 by apoque           ###   ########.fr        #
+#    Updated: 2018/03/13 19:02:01 by apoque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,19 +37,20 @@ OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	@make -C libft
-	@cp libft/libft.a ./$(NAME)
-	@ar -rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	#@$(CC) $(FLAGS) $(OBJ) -o printf $(NAME)
+$(NAME) : $(OBJ) libft/*.c libft/Makefile
+	make -C libft
+	cp libft/libft.a ./$(NAME)
+	ar -rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -o printf $(NAME)
 
 clean :
-	@cd libft ; make fclean ; cd ..
-	@rm $(OBJ)
+	cd libft ; make clean ; cd ..
+	rm -rf $(OBJ)
 
 fclean : clean
-	@rm $(NAME)
+	cd libft ; make fclean ; cd ..
+	rm -rf libftprintf.a
 
 re : fclean all
 

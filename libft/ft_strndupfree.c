@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strndupfree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 15:06:12 by apoque            #+#    #+#             */
-/*   Updated: 2018/03/13 18:41:30 by apoque           ###   ########.fr       */
+/*   Created: 2018/03/13 18:29:15 by apoque            #+#    #+#             */
+/*   Updated: 2018/03/13 18:36:21 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "printf.h"
-#include <limits.h>
-#include <locale.h>
+#include "libft.h"
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <wchar.h>
 
-int		main(void)
+char	*ft_strndupfree(char *to_free, int n)
 {
-	unsigned int	i;
-	void			*p;
-	wchar_t			*str;
-	wchar_t			c;
-	wchar_t			*s;
+	char		*tmp;
+	int			i;
+	int			len;
 
-	setlocale(LC_ALL, "");
+	tmp = ft_strdup(to_free);
+	free(to_free);
+	len = ft_strlen(tmp);
+	len = (len > n) ? n : len;
+	to_free = (char *)malloc(sizeof(char) * (len + 1));
 	i = 0;
-	p = &i;
-	s = L"S„™ºÚÅÄÄS„";
-	str = L"S˛";
-	c = L'˛';
-	printf("[%d]\n", printf("% 20.12ld", 0x11ffaa147));
-	printf("{%d}\n", ft_printf("% 20.12ld", 0x11ffaa147));
-	return (i);
+	if (!to_free)
+		return (NULL);
+	while (i < len && tmp[i] != '\0')
+	{
+		to_free[i] = tmp[i];
+		i++;
+	}
+	to_free[i] = '\0';
+	return (to_free);
 }

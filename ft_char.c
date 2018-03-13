@@ -1,6 +1,17 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_char.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/13 13:22:29 by apoque            #+#    #+#             */
+/*   Updated: 2018/03/13 13:33:05 by apoque           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "printf.h"
+#define P p->size
 
 void	ft_putwchar(wchar_t chr)
 {
@@ -43,7 +54,7 @@ void	ft_wchar(t_printf *p)
 		p->error = -1;
 	if (p->error != -1 && p->txt == 1)
 		ft_buf(p);
-	if ((p->size = (p->size - ft_strlen(str))) > 0 && p->flag[LESS] == 0 && p->error != -1)
+	if ((P = (P - ft_strlen(str))) > 0 && p->flag[LESS] == 0 && p->error != -1)
 		ft_put_space(p, 2);
 	if (p->error != -1)
 	{

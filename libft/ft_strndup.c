@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 19:13:44 by apoque            #+#    #+#             */
-/*   Updated: 2017/11/08 19:13:55 by apoque           ###   ########.fr       */
+/*   Updated: 2018/03/13 18:29:07 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ char	*ft_strndup(const char *s, int n)
 {
 	const char	*str;
 	char		*dup;
-	int		i;
-	int		len;
+	int			i;
+	int			len;
 
 	str = (const char *)s;
 	len = ft_strlen(str);

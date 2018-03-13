@@ -6,45 +6,46 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 15:11:11 by apoque            #+#    #+#             */
-/*   Updated: 2018/02/13 22:31:52 by apoque           ###   ########.fr       */
+/*   Updated: 2018/03/13 17:36:29 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+#define F p->format[p->idx2]
 
 void		ft_treatment(t_printf *p)
 {
 	int	a;
 
 	a = 1;
-	if ((p->format[p->idx2] == 'u' && p->modif[L] != 1 && p->modif[LL] != 1) || ((p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i') && p->modif[Z] == 1))
+	if ((F == 'u' && p->modif[L] != 1 && p->modif[LL] != 1) ||
+			((F == 'd' || F == 'i') && p->modif[Z] == 1))
 		ft_uint(p);
-	else if (p->format[p->idx2] == 'x') 
+	else if (F == 'x')
 		ft_xint(p);
-	else if (p->format[p->idx2] == 'X')
+	else if (F == 'X')
 		ft_xmajint(p);
-	else if (p->format[p->idx2] == 'o' && p->modif[LL] != 1 && p->modif[L] != 1)
+	else if (F == 'o' && p->modif[LL] != 1 && p->modif[L] != 1)
 		ft_oint(p);
-	else if (p->format[p->idx2] == 'O' || p->format[p->idx2] == 'o')
+	else if (F == 'O' || F == 'o')
 		ft_omajint(p);
-	else if (p->format[p->idx2] == 'D' || ((p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i') && (p->modif[L] == 1 || p->modif[LL] == 1 || p->modif[J] == 1)))
+	else if (F == 'D' || ((F == 'd' || F == 'i') &&
+				(p->modif[L] == 1 || p->modif[LL] == 1 || p->modif[J] == 1)))
 		ft_long(p);
-	else if (p->format[p->idx2] == 's' && p->modif[L] != 1)
-			ft_str(p);
-	else if (p->format[p->idx2] == 'i' || p->format[p->idx2] == 'd')
-		ft_int(p);
+	else if (F == 's' && p->modif[L] != 1)
+		ft_str(p);
 	else
-		{
-			a = 0;
-			ft_treatment2(p);
-		}
+	{
+		a = 0;
+		ft_treatment2(p);
+	}
 	(a == 1) ? p->idx2++ : a--;
 }
 
 void		ft_txt(t_printf *p)
 {
 	char	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	p->txt = 1;
@@ -64,7 +65,7 @@ void		ft_buf(t_printf *p)
 {
 	p->len = p->len + ft_strlen(p->buf);
 	ft_putstr(p->buf);
-	if (p->buf != NULL && p->format[p->idx2] != 'c' && p->format[p->idx2] != 'C')
+	if (p->buf != NULL && F != 'c' && F != 'C')
 	{
 		free(p->buf);
 		p->buf = NULL;

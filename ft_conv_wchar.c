@@ -1,16 +1,14 @@
-//HEADER
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-#include "printf.h"
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_conv_wchar.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/13 13:22:50 by apoque            #+#    #+#             */
+/*   Updated: 2018/03/13 13:33:52 by apoque           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "printf.h"
 
@@ -41,7 +39,7 @@ static void		ft_unicode2(wchar_t c, char str[5])
 	str[1] = (c & 0x3f) | 0x80;
 }
 
-void			ft_conv_wchar(t_printf *p, wchar_t c,char str[5])
+void			ft_conv_wchar(t_printf *p, wchar_t c, char str[5])
 {
 	char	a;
 

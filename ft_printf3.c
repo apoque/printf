@@ -1,11 +1,14 @@
-//HEADER
-//
-//
-//
-//
-//
-//
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf3.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/13 13:24:25 by apoque            #+#    #+#             */
+/*   Updated: 2018/03/13 17:12:18 by apoque           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "printf.h"
 
@@ -70,25 +73,25 @@ void		ft_opt_precision(t_printf *p)
 	ft_precision(p);
 }
 
-void			ft_opt_modif(t_printf *p)
+void		ft_opt_modif(t_printf *p)
 {
-	if (p->format[p->idx2] == 'h' && p->format[p->idx2 + 1]  == 'h')
+	if (p->format[p->idx2] == 'h' && p->format[p->idx2 + 1] == 'h')
 	{
 		p->modif[HH] = 1;
 		p->idx2++;
 	}
-	else if (p->format[p->idx2]  == 'h')
+	else if (p->format[p->idx2] == 'h')
 		p->modif[H] = 1;
-	else if (p->format[p->idx2]  == 'l' && p->format[p->idx2 + 1]  == 'l')
+	else if (p->format[p->idx2] == 'l' && p->format[p->idx2 + 1] == 'l')
 	{
 		p->modif[LL] = 1;
 		p->idx2++;
 	}
-	else if (p->format[p->idx2]  == 'l')
+	else if (p->format[p->idx2] == 'l')
 		p->modif[L] = 1;
-	else if (p->format[p->idx2]  == 'j')
+	else if (p->format[p->idx2] == 'j')
 		p->modif[J] = 1;
-	else if (p->format[p->idx2]  == 'z')
+	else if (p->format[p->idx2] == 'z')
 		p->modif[Z] = 1;
 	p->idx2++;
 }

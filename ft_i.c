@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:35:31 by apoque            #+#    #+#             */
-/*   Updated: 2018/02/13 20:49:18 by apoque           ###   ########.fr       */
+/*   Updated: 2018/03/13 16:39:37 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #define R (result % 10) + 48
 
-int	ft_string_size(long long n, int signe)
+int			ft_string_size(long long n, int signe)
 {
 	int	size;
 
@@ -61,14 +61,34 @@ char		*ft_ltoa(long n)
 		str[0] = '-';
 	while (i < size - signe)
 	{
-		(result > 0) ? str[size - 1 - i] = R : (str[size - 1 - i] = -R);
+		str[size - 1 - i] = ((result > 0) ? R : -R);
 		result = result / 10;
 		i++;
 	}
 	return (str);
 }
 
-void	ft_int2(t_printf *p, int i, int zeros)
+int			ft_zeros(t_printf *p, int i)
+{
+	char	*str;
+	int		tmp;
+	int		zeros;
+
+	tmp = (i < 0) ? -i : i;
+	str = ft_itoa(tmp);
+	zeros = p->precision - ft_strlen(str);
+	zeros = (p->dot == 1 && i == 0) ? zeros + 1 : zeros;
+	zeros = (zeros < 0) ? 0 : zeros;
+	free(str);
+	str = ft_itoa(i);
+	tmp = (p->flag[MORE] == 1 && i >= 0) ? 1 : 0;
+	p->size = p->size - (zeros + ft_strlen(str) + tmp);
+	free(str);
+	p->size = (p->dot == 1 && i == 0) ? p->size + 1 : p->size;
+	return (zeros);
+}
+
+void		ft_int2(t_printf *p, int i, int zeros)
 {
 	if (p->flag[MORE] == 1 && i >= 0)
 	{
@@ -81,7 +101,8 @@ void	ft_int2(t_printf *p, int i, int zeros)
 		p->len++;
 		i = -i;
 	}
-	if (p->size > 0 && (p->flag[ZERO] == 1 && p->precision == 0) && p->flag[LESS] != 1)
+	if (p->size > 0 && (p->flag[ZERO] == 1 && p->precision == 0) &&
+			p->flag[LESS] != 1)
 		ft_put_space(p, 1);
 	if (zeros > 0)
 		ft_put_precision(p, zeros);
@@ -94,28 +115,19 @@ void	ft_int2(t_printf *p, int i, int zeros)
 		ft_put_space(p, 2);
 }
 
-void	ft_int(t_printf *p)
+void		ft_int(t_printf *p)
 {
 	int			i;
-	int			tmp;
 	int			zeros;
-	char		*str;
 
 	if (p->txt == 1)
 		ft_buf(p);
 	i = va_arg(p->ap, int);
-	str = ft_itoa((tmp = (i < 0) ? -i : i ));
-	zeros = p->precision - ft_strlen(str);
-	zeros = (p->dot == 1 && i == 0) ? zeros + 1 : zeros;
-	zeros = (zeros < 0) ? 0 : zeros;
-	free(str);
-	str = ft_itoa(i);
-	p->size = p->size - (zeros + ft_strlen(str) + (tmp = (p->flag[MORE] == 1 && i >= 0) ? 1 : 0));
-	free(str);
-	p->size = (p->dot == 1 && i == 0) ? p->size + 1 : p->size;
+	zeros = ft_zeros(p, i);
 	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
 		p->size--;
-	if (p->size > 0 && (p->flag[ZERO] != 1 || p->precision > 0) && p->flag[LESS] != 1)
+	if (p->size > 0 && (p->flag[ZERO] != 1 || p->precision > 0) &&
+			p->flag[LESS] != 1)
 		ft_put_space(p, 2);
 	if (p->flag[SPACE] == 1 && i >= 0 && p->flag[MORE] == 0)
 	{

@@ -6,7 +6,7 @@
 #    By: apoque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 18:56:29 by apoque            #+#    #+#              #
-#    Updated: 2018/02/13 21:11:26 by apoque           ###   ########.fr        #
+#    Updated: 2018/03/13 18:34:17 by apoque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,8 @@ SRC =	ft_memset.c \
 		ft_lstmap.c\
 		ft_strrev.c\
 		ft_itoabase_u.c\
+		ft_strjoinfree.c\
+		ft_strndupfree.c\
 
 OBJ = $(SRC:.c=.o)
 

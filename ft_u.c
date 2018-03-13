@@ -1,17 +1,18 @@
-//HEADER
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_u.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/13 13:25:37 by apoque            #+#    #+#             */
+/*   Updated: 2018/03/13 17:29:00 by apoque           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "printf.h"
+#define F p->format[p->idx2]
+#define P p->precision
 
 void	ft_print_u2(t_printf *p, unsigned long u, int zeros)
 {
@@ -36,33 +37,17 @@ void	ft_print_u(t_printf *p, unsigned long u)
 	p->size = (p->dot == 1 && u == 0) ? p->size + 1 : p->size;
 	if (p->flag[SPACE] == 1 && p->flag[MORE] == 0)
 		p->size--;
-	if (p->size > 0 && (p->flag[ZERO] != 1 || p->precision > 0) && p->flag[LESS] != 1)
+	if (p->size > 0 && (p->flag[ZERO] != 1 || P > 0) && p->flag[LESS] != 1)
 		ft_put_space(p, 2);
 	ft_print_u2(p, u, zeros);
 }
 
-void	ft_uint(t_printf *p)
+void	ft_uint2(t_printf *p)
 {
 	unsigned int	u;
 	unsigned char	a;
-	size_t			z;
-	uintmax_t		x;
 
-	if (p->txt == 1)
-		ft_buf(p);
-	if (p->modif[Z] == 1 && p->format[p->idx2] != 'd' && p->format[p->idx2] != 'i')
-	{
-		z = va_arg(p->ap, size_t);
-		p->buf = ft_itoabase_u(z, "0123456789");
-		ft_print_u(p, z);
-	}
-	else if (p->modif[J] == 1 || (p->modif[Z] && (p->format[p->idx2] == 'd' || p->format[p->idx2] == 'i')))
-	{
-		x = va_arg(p->ap, size_t);
-		p->buf = ft_itoabase_u(x, "0123456789");
-		ft_print_u(p, x);
-	}
-	else if (p->modif[HH] == 1 && p->format[p->idx2] == 'u')
+	if (p->modif[HH] == 1 && F == 'u')
 	{
 		a = va_arg(p->ap, unsigned int);
 		p->buf = ft_itoabase_u(a, "0123456789");
@@ -74,10 +59,32 @@ void	ft_uint(t_printf *p)
 		p->buf = ft_itoabase_u(u, "0123456789");
 		ft_print_u(p, u);
 	}
-
 }
 
-void		ft_umajint(t_printf *p)
+void	ft_uint(t_printf *p)
+{
+	size_t			z;
+	uintmax_t		x;
+
+	if (p->txt == 1)
+		ft_buf(p);
+	if (p->modif[Z] == 1 && F != 'd' && F != 'i')
+	{
+		z = va_arg(p->ap, size_t);
+		p->buf = ft_itoabase_u(z, "0123456789");
+		ft_print_u(p, z);
+	}
+	else if (p->modif[J] == 1 || (p->modif[Z] && (F == 'd' || F == 'i')))
+	{
+		x = va_arg(p->ap, size_t);
+		p->buf = ft_itoabase_u(x, "0123456789");
+		ft_print_u(p, x);
+	}
+	else
+		ft_uint2(p);
+}
+
+void	ft_umajint(t_printf *p)
 {
 	unsigned long	u;
 
